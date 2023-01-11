@@ -1,7 +1,7 @@
 # ADB-client
 A work in progress client used to streamline several ADB operations 
 
-Android phone and watch support currently with vr and other platforms planned
+watch support only currently with vr, phone and other platforms planned
 
 ## Prerequisites:
 The latest version of ADB from Google https://developer.android.com/studio/releases/platform-tools
