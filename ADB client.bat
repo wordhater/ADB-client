@@ -47,13 +47,14 @@ echo [1] Copy apk to device and install
 echo [2] Reboot device
 echo [3] Close server and end program
 echo [4] Enter own command
+echo [5] Copy folder to device
 echo =============================================================
 set /p input= ENTER OPTION HERE
 if %input% == 1 goto 1_watch
 if %input% == 2 goto 2_watch
 if %input% == 3 goto 3_watch
 if %input% == 4 goto 4_watch
-
+if %input% == 5 goto 5_watch
 :1_watch
 echo Copy APK into ADB platform-tools folder
 pause
@@ -79,6 +80,13 @@ set /p input=
 %input%
 goto Main_watch
 
+:5_watch
+echo copy the folder you wish to copy into the platform-tools folder
+echo type or paste the folder name below
+echo note that the folder name cannot contain any spaces
+set /p input=
+adb push %input%/. /sdcard/%input%/
+goto Main_watch
 
 :Main_phone
 echo =============================================================
@@ -86,12 +94,14 @@ echo [1] Copy apk to device and install
 echo [2] Reboot device
 echo [3] Close server and end program
 echo [4] Enter own command
+echo [5] Copy folder to device
 echo =============================================================
 set /p input= ENTER OPTION HERE
 if %input% == 1 goto 1_phone
 if %input% == 2 goto 2_phone
 if %input% == 3 goto 3_phone
 if %input% == 4 goto 4_phone
+if %input% == 5 goto 5_phone
 
 :1_phone
 echo Copy APK into ADB platform-tools folder
@@ -114,4 +124,30 @@ goto Main_phone
 :4_phone
 set /p input=
 %input%
+goto Main_phone
+
+:5_phone
+echo do you want to copy to internal storage or SD card
+echo [1] internal storage
+echo [2] SD card
+set /p input=
+
+if %input% == 2 goto copy_to_sd
+if %input% == 1 goto copy_to_internal
+goto 5_phone
+
+:copy_to_sd
+echo copy the folder you wish to copy into the platform-tools folder
+echo type or paste the folder name below
+echo note that the folder name cannot contain any spaces
+set /p input=
+adb push %input%/. /sdcard/%input%/
+goto Main_phone
+
+:copy_to_internal
+echo copy the folder you wish to copy into the platform-tools folder
+echo type or paste the folder name below
+echo note that the folder name cannot contain any spaces
+set /p input=
+adb push %input%/. /storage/emulated/0/%input%/
 goto Main_phone
