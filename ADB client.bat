@@ -9,9 +9,7 @@ echo If you do not know what or where this option is, search how to turn on adb 
 pause
 
 
-set /p input= insert 1 if you are connecting to a phone leave blank for anything else
-if %input% == 1 goto point_1
-goto point_1.5
+
 :point_1
 echo Type the ip that appears below the switch, E.g: 192.255.255.255:5555
 set /p input=
@@ -21,17 +19,10 @@ adb connect %input%
 if not errorlevel 1 goto point_2
 
 echo An error occurred during connecting
-goto point_1
-:point_1.5
-echo Type the ip that appears below the switch, E.g: 192.255.255.255:5555
-echo if there is none resarch where it is for your device
 echo if this is the first time you are connecting your phone or tablet you will need to manually pair your device to adb do your resarch on how to do that on your device as it is different in each device
-set /p input=
-adb pair %input%
-if errorlevel 0 goto point_2
-adb connect %input%
-if errorlevel 0 goto point_2
-goto point_1.5
+goto point_1
+
+
 
 :point_2
 echo connected
@@ -52,22 +43,25 @@ if %input% gtr 2 goto point_3
 
 :Main_watch
 echo =============================================================
-echo [1] load apk to device and install
+echo [1] Copy apk to device and install
 echo [2] Reboot device
 echo [3] Close server and end program
+echo [4] Enter own command
 echo =============================================================
 set /p input= ENTER OPTION HERE
 if %input% == 1 goto 1_watch
 if %input% == 2 goto 2_watch
 if %input% == 3 goto 3_watch
+if %input% == 4 goto 4_watch
 
 :1_watch
 echo Copy APK into ADB platform-tools folder
 pause
-echo copy full filename INCLUDING EXTENTION and paste below
+echo Copy full filename INCLUDING EXTENTION and paste below
 set /p input=
 adb push %input% /sdcard/
 adb -e install %input%
+adb shell rm -f /sdcard/%input%
 goto Main_watch
 
 :2_watch
@@ -80,16 +74,24 @@ timeout 2 >nul
 exit
 goto Main_watch
 
+:4_watch
+set /p input=
+%input%
+goto Main_watch
+
+
 :Main_phone
 echo =============================================================
-echo [1] load apk to device and install
+echo [1] Copy apk to device and install
 echo [2] Reboot device
 echo [3] Close server and end program
+echo [4] Enter own command
 echo =============================================================
 set /p input= ENTER OPTION HERE
 if %input% == 1 goto 1_phone
 if %input% == 2 goto 2_phone
 if %input% == 3 goto 3_phone
+if %input% == 4 goto 4_phone
 
 :1_phone
 echo Copy APK into ADB platform-tools folder
@@ -107,4 +109,9 @@ goto Main_phone
 adb kill-server
 timeout 2 >nul
 exit
+goto Main_phone
+
+:4_phone
+set /p input=
+%input%
 goto Main_phone
