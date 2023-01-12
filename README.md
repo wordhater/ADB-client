@@ -1,5 +1,5 @@
 # ADB-client
-A work in progress client used to streamline several ADB operations 
+A work in progress client used to streamline several ADB operations(mostly sideloading apps for now)
 
 watch support only currently with vr, phone and other platforms planned
 
