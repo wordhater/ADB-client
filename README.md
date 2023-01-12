@@ -20,3 +20,11 @@ Locate the platform-tools folder
 Copy the batch file into the platform-tools folder
 
 Run the batch file
+
+
+## Features
+Copy, install and clean up files after installing an apk 
+
+Restart the connected device with one button press
+
+copy entire folders and subfolders of files to a device
