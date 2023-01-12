@@ -9,6 +9,8 @@ Developer options enabled on your android device
 
 Wifi debugging enabled in developer options
 
+if your using a phone it will need to be paired to your computer using adb pair
+
 ## Setup:
 Download and extract this repository
 
