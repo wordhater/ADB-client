@@ -5,6 +5,7 @@ watch and phone support only currently with vr and other platforms planned
 
 ## Prerequisites:
 The latest version of ADB from Google https://developer.android.com/studio/releases/platform-tools
+
 Developer options enabled on your android device
 
 Wifi debugging enabled in developer options
